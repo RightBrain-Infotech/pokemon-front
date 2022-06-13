@@ -1,0 +1,18 @@
+<div class="container-fluid px-0">
+  <app-top-bar></app-top-bar>
+  <div class="container py-5">
+    <div *ngIf="pokemon">
+      <h1 class="fw-bold">{{ pokemon?.name }}</h1>
+      <h4 class="text-secondary fw-bold">Types</h4>
+      <ul class="list-group list-group-flush list-group-numbered">
+        <li class="list-group-item" *ngFor="let types of pokemon?.types">
+          {{ types?.type?.name }}
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="!pokemon">
+      <h4>No pokemon available with name: <b>{{ pokemonNameFromRoute }}</b></h4>
+    </div>
+  </div>
+</div>
+<app-loader *ngIf="isLoading"></app-loader>

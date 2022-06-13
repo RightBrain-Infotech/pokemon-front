@@ -1,0 +1,8 @@
+<div class="container-fluid px-0">
+  <app-top-bar></app-top-bar>
+  <div class="container py-5">
+    <h1 class="fw-bold">Available Pokemons</h1>
+    <app-pokemons-list [pokemons]="pokemons"></app-pokemons-list>
+  </div>
+</div>
+<app-loader *ngIf="isLoading"></app-loader>
