@@ -1,7 +1,14 @@
 <ul class="list-group list-group-flush">
-  <li class="list-group-item d-flex align-items-start px-0" *ngFor="let pokemon of pokemons">
+  <li
+    class="list-group-item d-flex align-items-start px-0"
+    *ngFor="let pokemon of pokemons"
+  >
     <h4 class="fw-bold">
-      <a [routerLink]="'pokemons/' + pokemon?.name">{{ pokemon?.name }}</a>
+      <a
+        class="text-capitalize text-decoration-none"
+        [routerLink]="'pokemons/' + pokemon?.name"
+        >{{ pokemon?.name }}</a
+      >
     </h4>
   </li>
 </ul>

@@ -1,39 +1,100 @@
 <div class="container-fluid px-0">
   <app-top-bar></app-top-bar>
   <div class="container py-5">
-    <div *ngIf="pokemon">
-      <h1 class="fw-bold">{{ pokemon?.name }}</h1>
-      <h4 class="text-secondary fw-bold">Images</h4>
-      <div class="d-flex flex-row">
-        <div class="col-md-2 border" *ngIf="pokemon?.sprites?.front_shiny">
-          <img [src]="pokemon?.sprites?.front_shiny" class="w-100" alt="" />
-        </div>
-        <div class="col-md-2 border" *ngIf="pokemon?.sprites?.back_shiny">
-          <img [src]="pokemon?.sprites?.back_shiny" class="w-100" alt="" />
-        </div>
-        <div class="col-md-2 border" *ngIf="pokemon?.sprites?.front_default">
-          <img [src]="pokemon?.sprites?.front_default" class="w-100" alt="" />
-        </div>
-        <div class="col-md-2 border" *ngIf="pokemon?.sprites?.back_default">
-          <img [src]="pokemon?.sprites?.back_default" class="w-100" alt="" />
-        </div>
-      </div>
-      <h4 class="text-secondary fw-bold mt-3">Types</h4>
-      <ul class="list-group list-group-flush list-group-numbered">
-        <li class="list-group-item" *ngFor="let types of pokemon?.types">
-          {{ types?.type?.name }}
-        </li>
-      </ul>
+    <div class="mb-3" (click)="goBack()">
+      <button class="btn btn-primary rounded-pill px-5">Back</button>
     </div>
-    <div *ngIf="!pokemon">
+    <div *ngIf="isLoading">
+      <h4>
+        Fetching data for <b>{{ pokemonNameFromRoute }}...</b>
+      </h4>
+    </div>
+    <div *ngIf="!pokemon && isLoading === false">
       <h4>
         No pokemon available with name: <b>{{ pokemonNameFromRoute }}</b>
       </h4>
     </div>
-    <div class="mt-3 d-flex justify-content-end" (click)="goBack()">
-      <button class="btn btn-outline-dark">
-        <- Back
-      </button>
+    <div *ngIf="pokemon">
+      <h1 class="fw-bold text-capitalize">{{ pokemon?.name }}</h1>
+      <h4 class="text-secondary fw-bold">Images</h4>
+      <div class="d-flex flex-row">
+        <div
+          class="col-md-2 border"
+          *ngIf="pokemon?.sprites?.other?.home?.front_shiny"
+        >
+          <img
+            [src]="pokemon?.sprites?.other?.home?.front_shiny"
+            class="w-100"
+            alt=""
+          />
+        </div>
+        <div
+          class="col-md-2 border"
+          *ngIf="pokemon?.sprites?.other?.home?.back_shiny"
+        >
+          <img
+            [src]="pokemon?.sprites?.other?.home?.back_shiny"
+            class="w-100"
+            alt=""
+          />
+        </div>
+        <div
+          class="col-md-2 border"
+          *ngIf="pokemon?.sprites?.other?.home?.front_default"
+        >
+          <img
+            [src]="pokemon?.sprites?.other?.home?.front_default"
+            class="w-100"
+            alt=""
+          />
+        </div>
+        <div
+          class="col-md-2 border"
+          *ngIf="pokemon?.sprites?.other?.home?.back_default"
+        >
+          <img
+            [src]="pokemon?.sprites?.other?.home?.back_default"
+            class="w-100"
+            alt=""
+          />
+        </div>
+      </div>
+      <h4 class="text-secondary fw-bold mt-3">Breed Types</h4>
+      <div class="row">
+        <div class="col-md-3 pt-2 pb-4" *ngFor="let types of pokemon?.types">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title fw-bold text-capitalize mb-0">
+                {{ types?.type?.name }}
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h4 class="text-secondary fw-bold mt-3">Abilities</h4>
+      <div class="row">
+        <div class="col-md-3 pt-2 pb-4" *ngFor="let stats of pokemon?.stats">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title fw-bold text-capitalize mb-0">
+                {{ stats?.stat?.name }}
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h4 class="text-secondary fw-bold mt-3">Moves</h4>
+      <div class="row">
+        <div class="col-md-3 pt-2 pb-4" *ngFor="let moves of pokemon?.moves">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title fw-bold text-capitalize mb-0">
+                {{ moves?.move?.name }}
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

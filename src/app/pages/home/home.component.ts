@@ -13,6 +13,28 @@ export interface Pokemon {
 })
 export class HomeComponent implements OnInit {
   pokemons: Pokemon[] = [];
+  dangerousPokemons: Pokemon[] = [
+    {
+      name: 'mewtwo',
+      url: 'https://pokeapi.co/api/v2/pokemon/mewtwo',
+    },
+    {
+      name: 'yveltal',
+      url: 'https://pokeapi.co/api/v2/pokemon/yveltal',
+    },
+    {
+      name: 'gyarados',
+      url: 'https://pokeapi.co/api/v2/pokemon/gyarados',
+    },
+    {
+      name: 'banette',
+      url: 'https://pokeapi.co/api/v2/pokemon/banette',
+    },
+    {
+      name: 'ditto',
+      url: 'https://pokeapi.co/api/v2/pokemon/ditto',
+    },
+  ];
   isLoading: boolean = false;
   limit: number = 5;
   offset: number = 0;
@@ -34,7 +56,9 @@ export class HomeComponent implements OnInit {
         this.pokemons = data?.results;
         this.count = data?.count;
         this.totalPages = Math.ceil(this.count / this.limit);
-        this.isLoading = false;
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 500);
       });
   }
 

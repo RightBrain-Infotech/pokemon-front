@@ -1,7 +1,13 @@
 <div class="container-fluid px-0">
   <app-top-bar></app-top-bar>
   <div class="container py-5">
-    <h1 class="fw-bold">Available Pokemons</h1>
+    <h1 class="fw-bold">Welcome to Pokemon Front</h1>
+    <div class="alert alert-info" role="alert">
+      <h6 class="mb-0">
+        Do you know? There are in total: <b>{{ count | number }}</b> Pokemons
+        available.
+      </h6>
+    </div>
     <app-pokemons-list [pokemons]="pokemons"></app-pokemons-list>
     <div class="d-flex align-items-center justify-content-between py-3">
       <button
@@ -21,6 +27,34 @@
       >
         Next
       </button>
+    </div>
+    <div class="accordion mb-3" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button
+            class="accordion-button collapsed fw-bold"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseOne"
+            aria-expanded="false"
+            aria-controls="collapseOne"
+          >
+            Top 5 Most Dangerous Pokemons.
+          </button>
+        </h2>
+        <div
+          id="collapseOne"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingOne"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            <app-pokemons-list
+              [pokemons]="dangerousPokemons"
+            ></app-pokemons-list>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

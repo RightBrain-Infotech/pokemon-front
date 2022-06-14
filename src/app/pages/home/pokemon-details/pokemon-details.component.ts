@@ -29,11 +29,15 @@ export class PokemonDetailsComponent implements OnInit {
     this.pokemonService.getPokemon(name).subscribe(
       (pokemon) => {
         this.pokemon = pokemon;
-        this.isLoading = false;
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 500);
       },
       (error) => {
         this.pokemon = null;
-        this.isLoading = false;
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 500);
       }
     );
   }
