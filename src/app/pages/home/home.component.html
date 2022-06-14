@@ -3,6 +3,25 @@
   <div class="container py-5">
     <h1 class="fw-bold">Available Pokemons</h1>
     <app-pokemons-list [pokemons]="pokemons"></app-pokemons-list>
+    <div class="d-flex align-items-center justify-content-between py-3">
+      <button
+        class="btn btn-primary rounded-pill px-md-5 px-4"
+        (click)="handlePrev()"
+        [ngClass]="currentPage === 1 ? 'disabled' : ''"
+      >
+        Prev
+      </button>
+      <div>
+        <span class="text-muted">Page {{ currentPage }}</span>
+      </div>
+      <button
+        class="btn btn-primary rounded-pill px-md-5 px-4"
+        (click)="handleNext()"
+        [ngClass]="currentPage === totalPages ? 'disabled' : ''"
+      >
+        Next
+      </button>
+    </div>
   </div>
 </div>
 <app-loader *ngIf="isLoading"></app-loader>

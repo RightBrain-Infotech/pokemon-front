@@ -21,6 +21,17 @@ export class PokemonService {
       .pipe(catchError(this.handleError<Pokemon[]>('getPokemons', [])));
   }
 
+  getPokemonsByPagination(
+    limit: number,
+    offset: number
+  ): Observable<Pokemon[]> {
+    return this.http
+      .get<Pokemon[]>(
+        `${environment.baseUrl}/pokemon?offset=${offset}&limit=${limit}`
+      )
+      .pipe(catchError(this.handleError<Pokemon[]>('getPokemons', [])));
+  }
+
   getPokemon(name: string): Observable<any> {
     return this.http
       .get<any>(`${environment.baseUrl}/pokemon/${name}`)

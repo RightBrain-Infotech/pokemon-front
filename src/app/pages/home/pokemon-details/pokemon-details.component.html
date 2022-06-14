@@ -3,7 +3,22 @@
   <div class="container py-5">
     <div *ngIf="pokemon">
       <h1 class="fw-bold">{{ pokemon?.name }}</h1>
-      <h4 class="text-secondary fw-bold">Types</h4>
+      <h4 class="text-secondary fw-bold">Images</h4>
+      <div class="d-flex flex-row">
+        <div class="col-md-2 border" *ngIf="pokemon?.sprites?.front_shiny">
+          <img [src]="pokemon?.sprites?.front_shiny" class="w-100" alt="" />
+        </div>
+        <div class="col-md-2 border" *ngIf="pokemon?.sprites?.back_shiny">
+          <img [src]="pokemon?.sprites?.back_shiny" class="w-100" alt="" />
+        </div>
+        <div class="col-md-2 border" *ngIf="pokemon?.sprites?.front_default">
+          <img [src]="pokemon?.sprites?.front_default" class="w-100" alt="" />
+        </div>
+        <div class="col-md-2 border" *ngIf="pokemon?.sprites?.back_default">
+          <img [src]="pokemon?.sprites?.back_default" class="w-100" alt="" />
+        </div>
+      </div>
+      <h4 class="text-secondary fw-bold mt-3">Types</h4>
       <ul class="list-group list-group-flush list-group-numbered">
         <li class="list-group-item" *ngFor="let types of pokemon?.types">
           {{ types?.type?.name }}
@@ -11,7 +26,14 @@
       </ul>
     </div>
     <div *ngIf="!pokemon">
-      <h4>No pokemon available with name: <b>{{ pokemonNameFromRoute }}</b></h4>
+      <h4>
+        No pokemon available with name: <b>{{ pokemonNameFromRoute }}</b>
+      </h4>
+    </div>
+    <div class="mt-3 d-flex justify-content-end" (click)="goBack()">
+      <button class="btn btn-outline-dark">
+        <- Back
+      </button>
     </div>
   </div>
 </div>

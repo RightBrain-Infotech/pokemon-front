@@ -1,7 +1,6 @@
 <ul class="list-group list-group-flush">
-  <li class="list-group-item" *ngFor="let pokemon of pokemons">
-    <!-- <img [src]="pokemon?.url" alt=""> -->
-    <h4>
+  <li class="list-group-item d-flex align-items-start px-0" *ngFor="let pokemon of pokemons">
+    <h4 class="fw-bold">
       <a [routerLink]="'pokemons/' + pokemon?.name">{{ pokemon?.name }}</a>
     </h4>
   </li>

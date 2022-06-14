@@ -26,13 +26,19 @@ export class PokemonDetailsComponent implements OnInit {
 
   getPokemon(name: string): void {
     this.isLoading = true;
-    this.pokemonService.getPokemon(name).subscribe((pokemon) => {
-      this.pokemon = pokemon;
-      this.isLoading = false;
-      console.log(pokemon);
-    }, (error) => {
-      console.log(error);
-      this.isLoading = false;
-    });
+    this.pokemonService.getPokemon(name).subscribe(
+      (pokemon) => {
+        this.pokemon = pokemon;
+        this.isLoading = false;
+      },
+      (error) => {
+        this.pokemon = null;
+        this.isLoading = false;
+      }
+    );
+  }
+
+  goBack(): void {
+    window.history.back();
   }
 }
